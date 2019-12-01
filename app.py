@@ -161,7 +161,7 @@ def check_out(id):
     db.session.commit()
     return redirect('/guestlist')
 
-@app.route('/guestlist/check_in/<int:id>') 
+@app.route('/guest/check_in/<int:id>') 
 def check_in(id):
     gt_cin = Guest.query.get_or_404(id)
     if (datetime.now().date()== gt_cin.check_in.date()) and (datetime.now().strftime("%H:%M") > gt_cin.check_in.strftime("%H:%M")) :
