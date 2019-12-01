@@ -67,7 +67,6 @@ We can also schedule future meetings from the guest portal.
 
 ![alt text](images/future_meeting.png)
 
-![alt text](images/guestlist.png)
 
 To check-in, go to guestlist and start meeting at your scheduled time.
 
