@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Host Details Update</title>
+
+{% endblock %}
+
+
+{% block body %}
+<h1 style="text-align:center; margin-top: 5%;">Update Host Details</h1>
+<div style="width:30%; margin:2% auto">
+    <form action="/host_update/{{host.id}}" method="POST">
+        <div class="form-group">
+            <input type="text" class="form-control" name="host_name" id="host_name" value="{{host.name}}" required>
+        </div>
+
+        <div class="form-group">
+            <input type="tel" class="form-control" name="host_tel" id="host_tel" value="{{host.tel}}"
+                pattern="(7|8|9)\d{9}$" required>
+        </div>
+
+        <div class="form-group">
+            <input type="email" class="form-control" name="host_mail" id="host_mail" value="{{host.mail}}" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="host_addr" id="host_addr" value="{{host.addr}}" required>
+        </div>
+        <div class="form-group">
+            <label style="margin-right: 10%;">Available Now?</label>
+            <input type="radio" name="host_availability" value="Yes">Yes
+            <input type="radio" name="host_availability" value="No" style="margin-left: 10%;"> No<br>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Upload Details">
+        </div>
+    </form>
+    <div>
+        Cancel and Go to Host Portal <a href="/host">Here</a>
+    </div>
+</div>
+</div>
+{% endblock %}

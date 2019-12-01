@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Guest List</title>
+{% endblock %}
+
+{% block body %}
+
+<div style="width:80%; text-align:center; margin-top:50px; margin:2%;">
+    <h3>Guests Already Checked-in</h3>    
+    <table border=1>
+            <tr style="border:1px solid white; color: white;">
+                <th style="padding:10px;">Name of the Guest</th>
+                <th style="padding:10px;">Mobile number</th>
+                <th style="padding:10px;">Email-id</th>
+                <th style="padding:10px;">Name of the Host</th>
+                <th style="padding:10px;">Check-in Date</th>
+                <th style="padding:10px;">Check-in Time</th>
+                <th style="padding:10px;">Checkout</th>
+            </tr>
+            {% for guest in guests %}
+            {% if guest.checked_in == 1 %}
+            <tr style="border:1px solid white; color: white;">
+                <td>{{ guest.name }}</td>
+                <td>{{ guest.tel }}</td>
+                <td>{{ guest.mail }}</td>
+                <td>{{ guest.host_name }}</td>
+                <td>{{ guest.check_in.date() }}</td>
+                <td>{{ guest.check_in.strftime("%H:%M") }}</td>
+                <td>
+                    <a href="/guest/check_out/{{guest.id}}">check-out</a>
+                </td>
+            </tr>
+    
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+    <div style="width:80%; text-align:center; margin-top:50px; margin:2%;">
+        <h3>Guests Scheduled for future Check-in</h3>
+        <table border=1>
+            <tr style="border:1px solid white; color: white;">
+                <th style="padding:10px;">Name of the Guest</th>
+                <th style="padding:10px;">Mobile number</th>
+                <th style="padding:10px;">Email-id</th>
+                <th style="padding:10px;">Name of the Host</th>
+                <th style="padding:10px;">Scheduled Check-in Date</th>
+                <th style="padding:10px;">Scheduled check-in Time</th>
+                <th style="padding:10px;">Checkin</th>
+            </tr>
+            {% for guest in guests %}
+            {% if guest.checked_in == 0 %}
+            <tr style="border:1px solid white; color: white;">
+                <td>{{ guest.name }}</td>
+                <td>{{ guest.tel }}</td>
+                <td>{{ guest.mail }}</td>
+                <td>{{ guest.host_name }}</td>
+                <td>{{ guest.check_in.date() }}</td>
+                <td>{{ guest.check_in.strftime("%H:%M") }}</td>
+                <td>
+                    <a href="/guest/check_in/{{guest.id}}">check-in</a>
+                </td>
+            </tr>
+    
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+    {% endblock %}

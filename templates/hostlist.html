@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Host List</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="lg-6 md-6" style="text-align:center; margin-top:50px; margin-left:10%;">
+        <table border=1>
+            <tr style="border:1px solid white; color: white;">
+                <th style="padding:10px;">Name of the Host</th>
+                <th style="padding:10px;">Mobile number</th>
+                <th style="padding:10px;">Email - Id</th>
+                <th style="padding:10px;">Availability</th>
+                <th style="padding:10px; width:max-content;">Address</th>
+                <th style="padding:10px;">Actions</th>
+            </tr>
+            {% for host in hosts %}
+            <tr style="border:1px solid white; color: white;">
+                <td style="padding:10px;">{{ host.name }}</td>
+                <td style="padding:10px;">{{ host.tel }}</td>
+                <td style="padding:10px;">{{ host.mail }}</td>
+                <td style="padding:10px;">{{ host.addr }}</td>
+                <td style="padding:10px;">{{ host.avail }}</td>
+                <td style="padding:10px;">
+                    <a href="/host/delete/{{host.id}}">delete</a><br>
+                    <a href="/host_update/{{host.id}}">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+
+
+    {% endblock %}
