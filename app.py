@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, url_for, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -13,17 +14,18 @@ app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config['MAIL_SERVER']= 'smtp.googlemail.com'
 app.config['MAIL_PORT']= 587
 app.config['MAIL_USE_TLS']= True
-app.config['MAIL_USERNAME']= 'nischal.kakamessi@gmail.com'
-app.config['MAIL_PASSWORD']= 'iitB@1106'
+app.config['MAIL_USERNAME']= '' #enter your gmail account address
+app.config['MAIL_PASSWORD']= '' #enter your password
 
 mail = Mail(app)
 
 
-account_sid = "AC8407de57761bb1787cb4d5319c21d027"
-auth_token  = "00ccc7068963ba42acda22b26123a386"
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token  = os.environ['TWILIO_AUTH_TOKEN']
+
 client = Client(account_sid, auth_token)
 
-
+#database for guest details
 class Guest(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.Unicode(50), nullable = False)
@@ -37,6 +39,7 @@ class Guest(db.Model):
     def __repr__ (self):
         return '<Task %r >' % self.id
 
+#database for host details
 class Host(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.Unicode(50), nullable = False)
