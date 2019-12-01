@@ -183,7 +183,7 @@ def check_in(id):
             message = client.messages.create(
             from_='+12562987434',
             to='+91{0}'.format(host.tel),
-            body='''Dear {0},your guest is {1}\nphone-{2}\nEmail-Id {3}\nCheckinTime- {4}\nHappy Hosting'''.format(host.name,g_name,g_tel,g_mail,g_chin)                     
+            body='''Dear {0},your guest is {1}\nphone-{2}\nEmail-Id {3}\nCheckinTime- {4}\nHappy Hosting'''.format(host.name,gt_cin.name,gt_cin.tel,gt_cin.mail,datetime.now().strftime("%H:%M"))                      
             )
                 
         else:
